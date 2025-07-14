@@ -1,14 +1,14 @@
 LANGS = ["skt","tib","pli","chn"]
 
-WINDOWSIZE = {"skt": 6,
-              "tib": 7,
-              "chn": 6,
-              "pli": 6,
+WINDOWSIZE = {"skt": 12, # higher windowsize means better tolerance for diverging passages
+              "tib": 17,
+              "chn": 12,
+              "pli": 12,
               "eng": 0 }
 
-THRESHOLD = {"skt": 0.03,
-              "tib": 0.03,
-              "chn": 0.01,#0.01, # 0.01 ist default
+THRESHOLD = {"skt": 0.3,
+              "tib": 0.6, # better embeddings = higher threshold values possible 
+              "chn": 0.3,
               "pli": 0.5,
               "eng": 0.45 }
 
@@ -20,9 +20,9 @@ BIGGER_IS_BETTER = {"skt": False,
 
 # we need two parameters for min_length mainly since for Tibetan, there are two scenarios: single verse-padas (min length 7) and prose matches (min length 12)
 MIN_LENGTH = {"skt": 20, # war mal 25
-              "tib": 11,
-              "chn": 5,
-              "pli": 30,
+              "tib": 151, # you want longer min. length for tibetan to avoid noise 
+              "chn": 50,
+              "pli": 70,
               "eng": 10 }
 
 ABSOLUTE_MIN_LENGTH = {"skt": 20, # war mal 25
@@ -32,7 +32,7 @@ ABSOLUTE_MIN_LENGTH = {"skt": 20, # war mal 25
               "eng": 10 }
 
 
-QUERY_DEPTH = 50 # max. depth of the queries, this shouldn't exceed 200 after multiplying with bucket count; for chinese, tibetan 5 is okay; for pali and sanskrit maybe higher, like 15?
+QUERY_DEPTH = 500 
 MIN_DISTANCE = 500 # min. distance between the query token and the target token, in order to avoid that queries match with themselves 
 TEXT_CHUNKSIZE=2000
 
